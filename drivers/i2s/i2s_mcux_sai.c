@@ -537,7 +537,7 @@ static int i2s_mcux_config(const struct device *dev, enum i2s_dir dir,
 	enable_mclk_direction(dev, !is_mclk_slave);
 
 	get_mclk_rate(dev, &mclk);
-	LOG_DBG("mclk is %d", mclk);
+	printk("mclk is %d", mclk);
 
 	/* bit clock source is MCLK */
 	config.bitClock.bclkSource = kSAI_BclkSourceMclkDiv;
@@ -1126,14 +1126,18 @@ static void audio_clock_settings(const struct device *dev)
 	uint32_t clock_name = (uint32_t) dev_cfg->clk_sub_sys;
 
 	/*Clock setting for SAI*/
+	printk("pll_lp: %x\n", dev_cfg->pll_lp);
+	printk("pll_pd: %x\n", dev_cfg->pll_pd);
+	printk("pll_num: %x\n", dev_cfg->pll_num);
+	printk("pll_den: %x\n", dev_cfg->pll_den);
 	imxrt_audio_codec_pll_init(clock_name, dev_cfg->clk_src,
 				   dev_cfg->clk_pre_div, dev_cfg->clk_src_div);
 
 	#ifdef CONFIG_SOC_SERIES_IMX_RT11XX
-		audioPllConfig.loopDivider = dev_cfg->pll_lp;
-		audioPllConfig.postDivider = dev_cfg->pll_pd;
-		audioPllConfig.numerator = dev_cfg->pll_num;
-		audioPllConfig.denominator = dev_cfg->pll_den;
+		audioPllConfig.loopDivider = 32;// dev_cfg->pll_lp;
+		audioPllConfig.postDivider = 1;// dev_cfg->pll_pd;
+		audioPllConfig.numerator = 77;// dev_cfg->pll_num;
+		audioPllConfig.denominator = 100;// dev_cfg->pll_den;
 		audioPllConfig.ssEnable = false;
 	#elif defined CONFIG_SOC_SERIES_IMX_RT10XX
 		audioPllConfig.src = dev_cfg->pll_src;
@@ -1267,7 +1271,7 @@ static const struct i2s_driver_api i2s_mcux_driver_api = {
 		.irq_connect = i2s_irq_connect_##i2s_id,		\
 		.pinctrl = PINCTRL_DT_INST_DEV_CONFIG_GET(i2s_id),	\
 		.tx_sync_mode =						\
-			   DT_INST_PROP(i2s_id, nxp_tx_sync_mode),	\
+			   0,	\
 		.rx_sync_mode =						\
 			   DT_INST_PROP(i2s_id, nxp_rx_sync_mode),	\
 		.tx_channel = DT_INST_PROP(i2s_id, nxp_tx_channel),	\

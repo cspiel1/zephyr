@@ -137,6 +137,7 @@
 &sai1 {
 	pinctrl-0 = <&pinmux_sai1>;
 	pinctrl-names = "default";
+	podf = <16>;
 };
 
 &lpadc0 {
