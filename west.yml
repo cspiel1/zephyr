@@ -23,6 +23,8 @@ manifest:
       url-base: https://github.com/zephyrproject-rtos
     - name: babblesim
       url-base: https://github.com/BabbleSim
+    - name: cspiel1
+      url-base: https://github.com/cspiel1
 
   group-filter: [-babblesim]
 
@@ -352,6 +354,18 @@ manifest:
     - name: thrift
       path: modules/lib/thrift
       revision: 10023645a0e6cb7ce23fcd7fd3dbac9f18df6234
+    - name: re
+      remote: cspiel1
+      repo-path: zephyr-re.git
+      path: modules/sip/re
+      revision: main
+      submodules: yes
+    - name: baresip
+      remote: cspiel1
+      repo-path: zephyr-baresip.git
+      path: modules/sip/baresip
+      revision: main
+      submodules: yes
 
   self:
     path: zephyr
