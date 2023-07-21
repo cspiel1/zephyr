@@ -354,6 +354,11 @@ manifest:
     - name: thrift
       path: modules/lib/thrift
       revision: 10023645a0e6cb7ce23fcd7fd3dbac9f18df6234
+    - name: wm8960
+      remote: cspiel1
+      repo-path: zephyr-wm8960.git
+      path: drivers/rtio/wm8960
+      revision: main
     - name: re
       remote: cspiel1
       repo-path: zephyr-re.git
@@ -364,6 +369,12 @@ manifest:
       remote: cspiel1
       repo-path: zephyr-baresip.git
       path: modules/sip/baresip
+      revision: main
+      submodules: yes
+    - name: baresip-apps
+      remote: cspiel1
+      repo-path: zephyr-baresip-apps.git
+      path: modules/sip/baresip-apps
       revision: main
       submodules: yes
 
