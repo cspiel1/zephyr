@@ -354,6 +354,11 @@ manifest:
     - name: thrift
       path: modules/lib/thrift
       revision: 10023645a0e6cb7ce23fcd7fd3dbac9f18df6234
+    - name: opus
+      remote: cspiel1
+      repo-path: zephyr-opus.git
+      path: modules/codecs/opus
+      revision: main
     - name: wm8960
       remote: cspiel1
       repo-path: zephyr-wm8960.git
